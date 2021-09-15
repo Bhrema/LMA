@@ -13,7 +13,7 @@ import {Button} from '../components/button'
 import '../style/auth.scss'
 
 export function NewRoom(){
-// const {user} = useAuth();
+const {user} = useAuth();
 
 const [newRoom, setNewRoom] = useState('');
 
@@ -25,6 +25,11 @@ const [newRoom, setNewRoom] = useState('');
         }
 
         const roomRef = database.ref('rooms');
+
+        const fireBaseRoom = await roomRef.push({
+            title: newRoom,
+            authorId: user?.id,
+        });
     }
 
     return(
